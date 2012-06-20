@@ -52,12 +52,12 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 	}
 
 
-	public function parseValue($arrRowData, $strOutputFormat = 'html')
+	public function parseValue($arrRowData, $strOutputFormat = 'text')
 	{
 		$arrResult = parent::parseValue($arrRowData, $strOutputFormat);
 		// TODO: add loading of language file languages.php and render the value accordingly.
 		// Sadly Controller::getLanguages and loadLanguageFile() are protected and not static in 2.11
-		$arrResult['html'] = $arrRowData[$this->getColName()];
+		$arrResult['text'] = $arrRowData[$this->getColName()];
 		return $arrResult;
 	}
 }
