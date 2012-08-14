@@ -27,15 +27,6 @@ if (!defined('TL_ROOT'))
  */
 class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 {
-	/**
-	 * when rendered via a template, this returns the values to be stored in the template.
-	 */
-	protected function prepareTemplate(MetaModelTemplate $objTemplate, $arrRowData, $objSettings = null)
-	{
-		parent::prepareTemplate($objTemplate, $arrRowData, $objSettings);
-		$objTemplate->value = $this->resolveValue($arrRowData[$this->getColName()]);
-	}
-
 	/////////////////////////////////////////////////////////////////
 	// interface IMetaModelAttributeSimple
 	/////////////////////////////////////////////////////////////////
@@ -60,34 +51,14 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 		return $arrFieldDef;
 	}
 
-	protected function resolveValue($strLangValue)
-	{
-		$strLangCode = $this->getMetaModel()->getActiveLanguage();
 
-		// set the desired language.
-		MetaModelController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
-		if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
-		{
-			$strResult = $GLOBALS['TL_LANG']['LNG'][$strLangValue];
-		} else {
-			$strLangCode = $this->getMetaModel()->getFallbackLanguage();
-			// set the fallback language.
-			MetaModelController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
-			if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
-			{
-				$strResult = $GLOBALS['TL_LANG']['LNG'][$strLangValue];
-			} else {
-				// use english as last resort.
-				include(TL_ROOT . '/system/config/languages.php');
-				$strResult = $languages[$strLangValue];
-			}
-		}
-		// switch back to the original FE language to not disturb the frontend.
-		if ($strLangCode != $GLOBALS['TL_LANGUAGE'])
-		{
-			MetaModelController::getInstance()->loadLanguageFile('languages', false, true);
-		}
-		return $strResult;
+	public function parseValue($arrRowData, $strOutputFormat = 'text')
+	{
+		$arrResult = parent::parseValue($arrRowData, $strOutputFormat);
+		// TODO: add loading of language file languages.php and render the value accordingly.
+		// Sadly Controller::getLanguages and loadLanguageFile() are protected and not static in 2.11
+		$arrResult['text'] = $arrRowData[$this->getColName()];
+		return $arrResult;
 	}
 }
 
