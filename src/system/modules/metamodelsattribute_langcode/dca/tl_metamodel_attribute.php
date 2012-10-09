@@ -34,7 +34,6 @@ $GLOBALS['TL_DCA']['tl_metamodel_attribute']['fields']['langcodes'] = array
 	'inputType'             => 'checkbox',
 	'eval'                  => array
 	(
-		'includeBlankOption' => true,
 		'doNotSaveEmpty' => true,
 		'alwaysSave' => true,
 		'multiple' => true
