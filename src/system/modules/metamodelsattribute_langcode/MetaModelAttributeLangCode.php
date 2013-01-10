@@ -20,7 +20,7 @@ if (!defined('TL_ROOT'))
 
 /**
  * This is the MetaModelAttribute class for handling text fields.
- * 
+ *
  * @package	   MetaModels
  * @subpackage AttributeLangCode
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
@@ -52,9 +52,9 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 		));
 	}
 
-	public function getFieldDefinition()
+	public function getFieldDefinition($arrOverrides = array())
 	{
-		$arrFieldDef=parent::getFieldDefinition();
+		$arrFieldDef=parent::getFieldDefinition($arrOverrides);
 		$arrFieldDef['inputType'] = 'select';
 		$arrFieldDef['options'] = $this->get('langcodes');
 		return $arrFieldDef;
