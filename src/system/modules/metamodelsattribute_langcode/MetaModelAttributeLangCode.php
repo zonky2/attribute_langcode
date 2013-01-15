@@ -48,7 +48,12 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 	public function getAttributeSettingNames()
 	{
 		return array_merge(parent::getAttributeSettingNames(), array(
-			'langcodes'
+			'langcodes',
+			'filterable',
+			'searchable',
+			'sortable',
+			'flag',
+			'includeBlankOption'
 		));
 	}
 
