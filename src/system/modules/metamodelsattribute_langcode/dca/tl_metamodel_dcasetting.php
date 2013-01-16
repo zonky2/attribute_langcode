@@ -18,13 +18,18 @@
 $GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['langcode'] =
 array
 (
-	'backend' => array(
-		'tl_class',
+    'presentation' => array(
+        'tl_class',       
+    ),
+    'functions'  => array(
+        'mandatory',
+        'includeBlankOption'
+    ),
+	'overview' => array(		
 		'filterable',
 		'searchable',
 		'sortable',
-		'flag',
-		'includeBlankOption'
+		'flag'
 	)
 );
 
