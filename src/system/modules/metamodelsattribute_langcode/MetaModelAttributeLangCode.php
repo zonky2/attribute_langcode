@@ -53,6 +53,7 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 			'searchable',
 			'sortable',
 			'flag',
+			'mandatory',
 			'includeBlankOption'
 		));
 	}
