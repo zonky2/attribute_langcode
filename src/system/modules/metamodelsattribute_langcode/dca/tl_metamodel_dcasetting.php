@@ -7,30 +7,27 @@
  * data in each collection.
  *
  * PHP version 5
- * @package	   MetaModels
- * @subpackage AttributeLangCode
- * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @copyright  The MetaModels team.
- * @license    LGPL.
+ * @package     MetaModels
+ * @subpackage  AttributeLangcode
+ * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @copyright   The MetaModels team.
+ * @license     LGPL.
  * @filesource
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['langcode'] =
-array
+$GLOBALS['TL_DCA']['tl_metamodel_dcasetting']['metasubselectpalettes']['attr_id']['langcode'] = array
 (
-    'presentation' => array(
-        'tl_class',       
-    ),
-    'functions'  => array(
-        'mandatory',
-        'includeBlankOption'
-    ),
-	'overview' => array(		
+	'presentation' => array(
+		'tl_class',
+	),
+	'functions'  => array(
+		'mandatory',
+		'includeBlankOption'
+	),
+	'overview' => array(
 		'filterable',
 		'searchable',
 		'sortable',
 		'flag'
 	)
 );
-
-?>

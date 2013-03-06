@@ -10,13 +10,25 @@
  * @package     MetaModels
  * @subpackage  AttributeLangcode
  * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author      Andreas Isaak <info@andreas-isaak.de>
  * @copyright   The MetaModels team.
  * @license     LGPL.
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['langcode'] = array
+/**
+ * Register the classes
+ */
+ClassLoader::addClasses(array
 (
-	'class' => 'MetaModelAttributeLangCode',
-	'image' => 'system/modules/metamodelsattribute_langcode/html/langcode.png'
-);
+	'MetaModelAttributeLangCode'              => 'system/modules/metamodelsattribute_langcode/MetaModelAttributeLangCode.php',
+));
+
+
+/**
+ * Register the templates
+ */
+TemplateLoader::addFiles(array
+(
+	'mm_attr_langcode'              => 'system/modules/metamodelsattribute_langcode/templates',
+));
