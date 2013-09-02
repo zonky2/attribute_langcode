@@ -39,7 +39,7 @@ class MetaModelAttributeLangCode extends MetaModelAttributeSimple
 
 	public function getSQLDataType()
 	{
-		return 'varchar(2) NOT NULL default \'\'';
+		return 'varchar(5) NOT NULL default \'\'';
 	}
 
 	public function getAttributeSettingNames()
