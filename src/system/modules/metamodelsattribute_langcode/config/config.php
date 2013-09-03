@@ -15,8 +15,5 @@
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['langcode'] = array
-(
-	'class' => 'MetaModelAttributeLangCode',
-	'image' => 'system/modules/metamodelsattribute_langcode/html/langcode.png'
-);
+$GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModelAttributeLangCode';
+$GLOBALS['METAMODELS']['attributes']['langcode']['image'] = 'system/modules/metamodelsattribute_langcode/html/langcode.png';
