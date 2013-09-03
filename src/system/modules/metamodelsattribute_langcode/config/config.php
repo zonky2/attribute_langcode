@@ -15,5 +15,9 @@
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModelAttributeLangCode';
+$GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModels\Attribute\LangCode\LangCode';
 $GLOBALS['METAMODELS']['attributes']['langcode']['image'] = 'system/modules/metamodelsattribute_langcode/html/langcode.png';
+
+// non composerized Contao 2.X autoload support.
+$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__);
+$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'deprecated';
