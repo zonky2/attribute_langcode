@@ -91,6 +91,7 @@ class LangCode extends BaseSimple
 		$strLangCode = $this->getMetaModel()->getActiveLanguage();
 
 		// Set the desired language.
+		// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
 		ContaoController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
 		if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
 		{
@@ -98,6 +99,7 @@ class LangCode extends BaseSimple
 		} else {
 			$strLangCode = $this->getMetaModel()->getFallbackLanguage();
 			// Set the fallback language.
+			// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
 			ContaoController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
 			if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
 			{
@@ -113,6 +115,7 @@ class LangCode extends BaseSimple
 		// Switch back to the original FE language to not disturb the frontend.
 		if ($strLangCode != $GLOBALS['TL_LANGUAGE'])
 		{
+			// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
 			ContaoController::getInstance()->loadLanguageFile('languages', false, true);
 		}
 		return $strResult;
