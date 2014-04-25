@@ -17,17 +17,6 @@
  */
 
 /**
- * Register the classes
- */
-ClassLoader::addClasses(array
-(
-	'MetaModels\Attribute\LangCode\LangCode' => 'system/modules/metamodelsattribute_langcode/MetaModels/Attribute/LangCode/LangCode.php',
-
-	'MetaModelAttributeLangCode'             => 'system/modules/metamodelsattribute_langcode/MetaModelAttributeLangCode.php',
-));
-
-
-/**
  * Register the templates
  */
 TemplateLoader::addFiles(array
