@@ -17,8 +17,9 @@
 
 namespace MetaModels\Attribute\LangCode;
 
+use ContaoCommunityAlliance\Contao\Bindings\ContaoEvents;
+use ContaoCommunityAlliance\Contao\Bindings\Events\System\LoadLanguageFileEvent;
 use MetaModels\Attribute\BaseSimple;
-use MetaModels\Helper\ContaoController;
 use MetaModels\Render\Template;
 
 /**
@@ -72,11 +73,113 @@ class LangCode extends BaseSimple
 		$arrFieldDef['inputType']      = 'select';
 		$arrFieldDef['eval']['chosen'] = true;
 		$arrFieldDef['options']        = array_intersect_key(
-			// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
-			ContaoController::getInstance()->getLanguages(),
+			$this->getLanguageNames(),
 			array_flip((array)$this->get('langcodes'))
 		);
 		return $arrFieldDef;
+	}
+
+	/**
+	 * Include the TL_ROOT/system/config/languages.php file and return the contained $languages variable.
+	 *
+	 * @return string[]
+	 */
+	protected function getRealLanguages()
+	{
+		// @codingStandardsIgnoreStart - Include is required here, can not switch to require_once.
+		include(TL_ROOT . '/system/config/languages.php');
+		// @codingStandardsIgnoreEnd
+
+		/** @var string[] $languages */
+		return $languages;
+	}
+
+	/**
+	 * Retrieve all language names in the given language.
+	 *
+	 * @param string $language The language key.
+	 *
+	 * @return string[]
+	 */
+	protected function getLanguageNames($language = null)
+	{
+		$dispatcher = $GLOBALS['container']['event-dispatcher'];
+		/** @var \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher */
+		$event = new LoadLanguageFileEvent('languages', $language, true);
+		$dispatcher->dispatch(ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE, $event);
+
+		return $GLOBALS['TL_LANG']['LNG'];
+	}
+
+	/**
+	 * Retrieve all language names.
+	 *
+	 * This method takes the fallback language into account.
+	 *
+	 * @return string[]
+	 */
+	protected function getLanguages()
+	{
+		$loadedLanguage = $this->getMetaModel()->getActiveLanguage();
+		$languageValues = $this->getLanguageNames($loadedLanguage);
+		$languages      = $this->getRealLanguages();
+		$keys           = array_keys($languages);
+		$aux            = array();
+		$real           = array();
+
+		// Fetch real language values.
+		foreach ($keys as $key)
+		{
+			if (isset($languageValues[$key]))
+			{
+				$aux[$key]  = utf8_romanize($languageValues[$key]);
+				$real[$key] = $languageValues[$key];
+			}
+		}
+
+		// Add needed fallback values.
+		$keys = array_diff($keys, array_keys($aux));
+		if ($keys)
+		{
+			$loadedLanguage = $this->getMetaModel()->getFallbackLanguage();
+			$fallbackValues = $this->getLanguageNames($loadedLanguage);
+			foreach ($keys as $key)
+			{
+				if (isset($fallbackValues[$key]))
+				{
+					$aux[$key]  = utf8_romanize($fallbackValues[$key]);
+					$real[$key] = $fallbackValues[$key];
+				}
+			}
+		}
+
+		$keys = array_diff($keys, array_keys($aux));
+		if ($keys)
+		{
+			foreach ($keys as $key)
+			{
+				$aux[$key]  = utf8_romanize($languages[$key]);
+				$real[$key] = $languages[$key];
+			}
+		}
+
+		asort($aux);
+		$return = array();
+		foreach (array_keys($aux) as $key)
+		{
+			$return[$key] = $real[$key];
+		}
+
+		// Switch back to the original FE language to not disturb the frontend.
+		if ($loadedLanguage != $GLOBALS['TL_LANGUAGE'])
+		{
+			$dispatcher = $GLOBALS['container']['event-dispatcher'];
+			$event      = new LoadLanguageFileEvent('languages', null, true);
+			/** @var \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher */
+			$dispatcher->dispatch(ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE, $event);
+		}
+
+		return $return;
 	}
 
 	/**
@@ -88,36 +191,8 @@ class LangCode extends BaseSimple
 	 */
 	protected function resolveValue($strLangValue)
 	{
-		$strLangCode = $this->getMetaModel()->getActiveLanguage();
+		$countries = $this->getLanguages();
 
-		// Set the desired language.
-		// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
-		ContaoController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
-		if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
-		{
-			$strResult = $GLOBALS['TL_LANG']['LNG'][$strLangValue];
-		} else {
-			$strLangCode = $this->getMetaModel()->getFallbackLanguage();
-			// Set the fallback language.
-			// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
-			ContaoController::getInstance()->loadLanguageFile('languages', $strLangCode, true);
-			if (strlen($GLOBALS['TL_LANG']['LNG'][$strLangValue]))
-			{
-				$strResult = $GLOBALS['TL_LANG']['LNG'][$strLangValue];
-			} else {
-				// Use english as last resort.
-				// @codingStandardsIgnoreStart - Contao requires to include the file, we can not use require_once here.
-				include(TL_ROOT . '/system/config/languages.php');
-				$strResult = $languages[$strLangValue];
-				// @codingStandardsIgnoreEnd
-			}
-		}
-		// Switch back to the original FE language to not disturb the frontend.
-		if ($strLangCode != $GLOBALS['TL_LANGUAGE'])
-		{
-			// FIXME: Get rid of deprecated \MetaModels\Helper\ContaoController.
-			ContaoController::getInstance()->loadLanguageFile('languages', false, true);
-		}
-		return $strResult;
+		return $countries[$strLangValue];
 	}
 }
