@@ -60,18 +60,18 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"MetaModels": "src/system/modules/metamodelsattribute_langcode"
+			"MetaModels": "src"
 		}
 	},
 	"extra":{
 		"contao": {
 			"symlinks":{
-				"src/system/modules/metamodelsattribute_langcode":"system/modules/metamodelsattribute_langcode"
+				"contao":"system/modules/metamodelsattribute_langcode"
 			},
 			"transifex": {
 				"project": "metamodels",
 				"prefix": "attribute_langcode-",
-				"languages_cto": "src/system/modules/metamodelsattribute_langcode/languages",
+				"languages_cto": "contao/languages",
 				"languages_tx": ".tx"
 			}
 		},
