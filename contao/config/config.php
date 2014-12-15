@@ -16,5 +16,4 @@
  */
 
 $GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModels\Attribute\LangCode\LangCode';
-$GLOBALS['METAMODELS']['attributes']['langcode']['image'] =
-	'system/modules/metamodelsattribute_langcode/html/langcode.png';
+$GLOBALS['METAMODELS']['attributes']['langcode']['image'] = 'system/modules/metamodelsattribute_langcode/html/langcode.png';

@@ -7,6 +7,7 @@
  * data in each collection.
  *
  * PHP version 5
+ *
  * @package     MetaModels
  * @subpackage  AttributeLangcode
  * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
@@ -19,7 +20,9 @@
 /**
  * Register the templates
  */
-TemplateLoader::addFiles(array
-(
-	'mm_attr_langcode'              => 'system/modules/metamodelsattribute_langcode/templates',
-));
+TemplateLoader::addFiles(
+    array
+    (
+        'mm_attr_langcode' => 'system/modules/metamodelsattribute_langcode/templates',
+    )
+);
