@@ -114,6 +114,10 @@ class LangCode extends BaseSimple
      * This method takes the fallback language into account.
      *
      * @return string[]
+     *
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     protected function getLanguages()
     {
@@ -155,14 +159,12 @@ class LangCode extends BaseSimple
 
         asort($aux);
         $return = array();
-        foreach (array_keys($aux) as $key)
-        {
+        foreach (array_keys($aux) as $key) {
             $return[$key] = $real[$key];
         }
 
         // Switch back to the original FE language to not disturb the frontend.
-        if ($loadedLanguage != $GLOBALS['TL_LANGUAGE'])
-        {
+        if ($loadedLanguage != $GLOBALS['TL_LANGUAGE']) {
             $dispatcher = $GLOBALS['container']['event-dispatcher'];
             
             $event = new LoadLanguageFileEvent('languages', null, true);
@@ -182,7 +184,7 @@ class LangCode extends BaseSimple
         $arrFieldDef['eval']['chosen'] = true;
         $arrFieldDef['options']        = array_intersect_key(
             $this->getLanguageNames(),
-            array_flip((array)$this->get('langcodes'))
+            array_flip((array) $this->get('langcodes'))
         );
         return $arrFieldDef;
     }
