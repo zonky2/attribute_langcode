@@ -10,12 +10,12 @@
  * @package     MetaModels
  * @subpackage  AttributeLangcode
  * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author      Andreas Isaak <andy.jared@googlemail.com>
+ * @author      Cliff Parnitzky <github@cliff-parnitzky.de>
  * @copyright   The MetaModels team.
  * @license     LGPL.
  * @filesource
  */
 
-/**
- * Fields
- */
-$GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['langcode']    = 'Langcode';
+$GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModels\Attribute\LangCode\LangCode';
+$GLOBALS['METAMODELS']['attributes']['langcode']['image'] = 'system/modules/metamodelsattribute_langcode/html/langcode.png';

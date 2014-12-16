@@ -7,19 +7,19 @@
  * data in each collection.
  *
  * PHP version 5
+ *
  * @package     MetaModels
  * @subpackage  AttributeLangcode
  * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @author      Andreas Isaak <info@andreas-isaak.de>
+ * @author      Andreas Isaak <andy.jared@googlemail.com>
+ * @author      Cliff Parnitzky <github@cliff-parnitzky.de>
+ * @author      Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright   The MetaModels team.
  * @license     LGPL.
  * @filesource
  */
 
 /**
- * Register the templates
+ * Fields
  */
-TemplateLoader::addFiles(array
-(
-	'mm_attr_langcode'              => 'system/modules/metamodelsattribute_langcode/templates',
-));
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['langcode']    = 'Langcode';
