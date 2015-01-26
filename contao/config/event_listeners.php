@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The MetaModels extension allows the creation of multiple collections of custom items,
  * each with its own unique set of selectable attributes, with attribute extendability.
@@ -7,15 +6,25 @@
  * data in each collection.
  *
  * PHP version 5
+ *
  * @package     MetaModels
  * @subpackage  AttributeLangcode
  * @author      Christian Schiffler <c.schiffler@cyberspectrum.de>
- * @author      Andreas Isaak <andy.jared@googlemail.com>
- * @author      Cliff Parnitzky <github@cliff-parnitzky.de>
  * @copyright   The MetaModels team.
  * @license     LGPL.
  * @filesource
  */
 
-$GLOBALS['METAMODELS']['attributes']['langcode']['class'] = 'MetaModels\Attribute\LangCode\LangCode';
-$GLOBALS['METAMODELS']['attributes']['langcode']['image'] = 'system/modules/metamodelsattribute_langcode/html/langcode.png';
+use MetaModels\Attribute\LangCode\AttributeTypeFactory;
+use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
+use MetaModels\MetaModelsEvents;
+
+return array
+(
+    MetaModelsEvents::ATTRIBUTE_FACTORY_CREATE => array(
+        function (CreateAttributeFactoryEvent $event) {
+            $factory = $event->getFactory();
+            $factory->addTypeFactory(new AttributeTypeFactory());
+        }
+    )
+);

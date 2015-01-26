@@ -51,6 +51,11 @@
       "MetaModels": "src"
     }
   },
+  "autoload-dev": {
+    "psr-0": {
+      "MetaModels": "tests"
+    }
+  },
   "extra": {
     "contao": {
       "symlinks": {
