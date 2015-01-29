@@ -99,7 +99,7 @@ class LangCode extends BaseSimple
      */
     protected function getLanguageNames($language = null)
     {
-        $dispatcher = $GLOBALS['container']['event-dispatcher'];
+        $dispatcher = $this->getMetaModel()->getServiceContainer()->getEventDispatcher();
 
         $event = new LoadLanguageFileEvent('languages', $language, true);
         $dispatcher->dispatch(ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE, $event);
@@ -164,7 +164,7 @@ class LangCode extends BaseSimple
 
         // Switch back to the original FE language to not disturb the frontend.
         if ($loadedLanguage != $GLOBALS['TL_LANGUAGE']) {
-            $dispatcher = $GLOBALS['container']['event-dispatcher'];
+            $dispatcher = $this->getMetaModel()->getServiceContainer()->getEventDispatcher();
             
             $event = new LoadLanguageFileEvent('languages', null, true);
             $dispatcher->dispatch(ContaoEvents::SYSTEM_LOAD_LANGUAGE_FILE, $event);
