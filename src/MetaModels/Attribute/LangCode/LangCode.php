@@ -64,8 +64,6 @@ class LangCode extends BaseSimple
                 'langcodes',
                 'filterable',
                 'searchable',
-                'sortable',
-                'flag',
                 'mandatory',
                 'includeBlankOption'
             )
