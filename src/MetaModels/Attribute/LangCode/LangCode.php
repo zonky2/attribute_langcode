@@ -83,6 +83,7 @@ class LangCode extends BaseSimple
         include(TL_ROOT . '/system/config/languages.php');
         // @codingStandardsIgnoreEnd
 
+        /** @var string[] $languages */
         return $languages;
     }
 
