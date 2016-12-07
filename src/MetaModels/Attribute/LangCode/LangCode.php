@@ -17,6 +17,7 @@
  * @author     Cliff Parnitzky <github@cliff-parnitzky.de>
  * @author     David Maack <maack@men-at-work.de>
  * @author     Oliver Hoff <oliver@hofff.com>
+ * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  2012-2016 The MetaModels team.
  * @license    https://github.com/MetaModels/attribute_langcode/blob/master/LICENSE LGPL-3.0
  * @filesource
