@@ -12,3 +12,5 @@
  */
 
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['langcode'] = 'Sprachschlüssel';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['langcodes'][0] = 'Sprachschlüssel';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['langcodes'][1] = 'Den Sprachschlüssel auswählen.';
