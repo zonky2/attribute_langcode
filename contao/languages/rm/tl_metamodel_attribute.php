@@ -8,7 +8,9 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2013-05-13T22:12:48+02:00
+ * last-updated: 2017-05-10T00:07:24+02:00
  */
 
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['langcodes']['0']          = 'Code da lingua';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['langcode'] = 'Code da lingua';
+
