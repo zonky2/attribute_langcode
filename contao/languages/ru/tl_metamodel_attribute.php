@@ -8,9 +8,10 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2017-05-10T00:07:24+02:00
+ * last-updated: 2018-03-08T09:50:33+01:00
  */
 
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['langcodes']['0']          = 'Коды языка (Langcode)';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['langcodes']['1']          = 'Выберите код языка.';
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['langcode'] = 'Коды языка (Langcode)';
 
